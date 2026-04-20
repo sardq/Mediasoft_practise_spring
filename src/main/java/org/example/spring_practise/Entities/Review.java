@@ -1,0 +1,34 @@
+package org.example.spring_practise.Entities;
+
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
+import org.hibernate.annotations.CreationTimestamp;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+@Entity
+@Table(name = "Reviews")
+@Data
+@NoArgsConstructor
+@RequiredArgsConstructor
+public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private UUID id;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "sight_id")
+    private Sight sight;
+    @Column(name = "user_id")
+    private UUID userId;
+
+    private Integer rating;
+    private String text;
+
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+}
