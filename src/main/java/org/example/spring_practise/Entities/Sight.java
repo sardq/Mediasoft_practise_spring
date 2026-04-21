@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.example.spring_practise.Enums.SightCategory;
-import org.springframework.data.geo.Point;
+import org.locationtech.jts.geom.Point;
 
 import java.util.UUID;
 
@@ -20,6 +20,7 @@ public class Sight {
     private UUID id;
     @Enumerated(EnumType.STRING)
     SightCategory category;
+    private String name;
     private String description;
     @Column(columnDefinition = "geometry(Point,4326)")
     private Point location;
